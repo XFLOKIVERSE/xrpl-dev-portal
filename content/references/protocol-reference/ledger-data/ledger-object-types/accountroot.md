@@ -68,6 +68,7 @@ AccountRoot objects can have the following flag values:
 
 | Flag Name           | Hex Value    | Decimal Value | Corresponding [AccountSet Flag](accountset.html#accountset-flags) | Description |
 |---------------------|--------------|---------------|--------------------|----|
+| `lsfAMM` :not_enabled: | `0x02000000` | 33554432   | (None)             | This account is an Automated Market Maker instance. :not_enabled: |
 | `lsfDefaultRipple`  | `0x00800000` | 8388608       | `asfDefaultRipple` | Enable [rippling](rippling.html) on this addresses's trust lines by default. Required for issuing addresses; discouraged for others. |
 | `lsfDepositAuth`    | `0x01000000` | 16777216      | `asfDepositAuth`   | This account can only receive funds from transactions it sends, and from [preauthorized](depositauth.html#preauthorization) accounts. (It has [DepositAuth](depositauth.html) enabled.) |
 | `lsfDisableMaster`  | `0x00100000` | 1048576       | `asfDisableMaster` | Disallows use of the master key to sign transactions for this account. |
