@@ -976,6 +976,11 @@ pages:
             - en
             - ja
 
+    -   md: concepts/consensus-network/bridge.md
+        targets:
+            - en
+            - ja
+
      # Redirect old "federated-sidechains.html"
     -   name: Federated Sidechains
         html: federated-sidechains.html
