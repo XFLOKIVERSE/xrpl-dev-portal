@@ -27,10 +27,10 @@ The `AMM` object has the following fields:
 |:------------------------------|:----------|:------------------|:-------------|
 | `AccountRootID` | String | AccountID | The account tied to this AMM instance. |
 | `TradingFee` | Number | UInt16 | The percentage fee to be charged for trades against this AMM instance, in units of 1/10,000. The maximum value is 65000, for a 65% fee. |
-| `VoteSlots` | Array | ***TODO*** | A list of vote objects ***TODO: for what?*** |
-| `AuctionSlot` | Object | ***TODO*** | Details of the current owner of the auction slot, as an [Auction Slot object](#auction-slot-object). |
-| `LPTokenBalance` | ***TODO*** | ***TODO*** | The outstanding balance of liquidity provider tokens from this AMM instance. ***TODO: clarify*** |
-| `AMMTokens` | ***TODO*** | ***TODO*** | "The tokens of the AMM instance" ***TODO: clarify*** |
+| `VoteSlots` | Array | Array | A list of vote objects ***TODO: for what?*** |
+| `AuctionSlot` | Object | Object | Details of the current owner of the auction slot, as an [Auction Slot object](#auction-slot-object). |
+| `LPTokenBalance` | Object | Amount | The outstanding balance of liquidity provider tokens from this AMM instance. ***TODO: clarify*** |
+| `AMMTokens` | Object | Object | Defines the two assets this AMM trades. |
 
 ### Auction Slot Object
 
@@ -53,12 +53,14 @@ There are currently no flags defined for `AMM` objects.
 There are two possible formulas for the `AMM` object's ID, depending on the assets this AMM instance is for trading:
 
 - If the AMM trades **two [fungible token](tokens.html)**, the ID is the [SHA-512Half][] of the following, concatenated in order:
-    1. The address of the first token's issuer.
+    1. The `AMM` space key (`0x0041`)
+    0. The address of the first token's issuer.
     0. The currency code of the first token.
     0. The address of the second token.
     0. The currency code of the second token.
 - If the AMM trades **XRP and one fungible token**, the ID is the [SHA-512Half][] of the following, concatenated in order:
-    1. The address of the token's issuer.
+    1. The `AMM` space key (`0x0041`)
+    0. The address of the token's issuer.
     0. The currency code of the token.
     0. The ASCII string `XRP` ***TODO: is it really ASCII, or is it a full 160-bit currency code?***
 
