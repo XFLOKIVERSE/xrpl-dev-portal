@@ -14,7 +14,7 @@ status: not_enabled
 
 Create a new Automated Market-Maker (AMM) instance for trading a given currency pair.
 
-If successful, this transaction creates both an [AccountRoot object][] and an [AMM object][] which, together, represent the AMM.
+If successful, this transaction creates both an [AccountRoot object][] and an [AMM object][] which, together, represent the AMM; it also transfers ownership of the starting balance of both assets from the sender to the created `AccountRoot`, and issues an initial balance of liquidity provider tokens (`LPTokens`) from the AMM account to this transaction's sender.
 
 ## Example {{currentpage.name}} JSON
 
@@ -27,8 +27,8 @@ TODO
 
 | Field        | JSON Type           | [Internal Type][] | Required? | Description |
 |:-------------|:--------------------|:------------------|:----------|:------------|
-| `Asset1`     | [Currency Amount][] | Amount            | Yes       | The first of the two assets this AMM trades. ***TODO: how does the actual amount value work?*** |
-| `Asset2`     | [Currency Amount][] | Amount            | Yes       | The second of the two assets this AMM trades. |
+| `Asset1`     | [Currency Amount][] | Amount            | Yes       | The first of the two assets to fund this AMM with. This must have a positive `value`. |
+| `Asset2`     | [Currency Amount][] | Amount            | Yes       | The second of the two assets to fund this AMM with. This must have a positive `value`. |
 | `TradingFee` | Number              | UInt16            | Yes       | The fee to charge for trades against this AMM instance, in units of 1/100,000; a value of 1 is equivalent to 0.001%. The maximum value is 65000, indicating a 65% fee. |
 
 One or both of `Asset1` and `Asset2` can be [tokens](tokens.html); at most one of them can be [XRP](xrp.html). They cannot both have the same currency code and issuer.
