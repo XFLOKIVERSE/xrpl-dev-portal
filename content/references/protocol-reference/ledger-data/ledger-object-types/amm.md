@@ -36,13 +36,13 @@ The `AMM` object has the following fields:
 
 The `AuctionSlot` field contains an object with the following nested fields:
 
-| Field                         | JSON Type | [Internal Type][] | Description  |
-|:------------------------------|:----------|:------------------|:-------------|
-| `Account` | String - Address | AccountID | The current owner of this auction slot. |
-| `TimeStamp` | String | UInt32 | The time when this slot was bought, in [seconds since the Ripple Epoch][]. |
-| `DiscountedFee` | String | UInt32 | The trading fee to be charged to the auction owner, in the same format as `TradingFee`. By default this is 0, meaning that the auction owner can trade at no fee instead of the standard fee for this AMM. |
-| `Price` | String - Number | Amount | The number of `LPTokens` the auction owner paid to win this slot. ***TODO: normally Amount types would be serialized as an object rather than just a string value. Confirm.*** |
-| `AuthAccounts` | Array | ***TODO*** | _(May be omitted)_ A list of at most 4 additional accounts that are authorized to trade at the discounted fee for this AMM instance. |
+| Field           | JSON Type                 | [Internal Type][]    | Required? | Description |
+|:----------------|:--------------------------|:---------------------|:----------|:--|
+| `Account`       | String - Address          | AccountID            | Yes       | The current owner of this auction slot. |
+| `TimeStamp`     | String                    | UInt32               | Yes       | The time when this slot was bought, in [seconds since the Ripple Epoch][]. |
+| `DiscountedFee` | String                    | UInt32               | Yes       | The trading fee to be charged to the auction owner, in the same format as `TradingFee`. By default this is 0, meaning that the auction owner can trade at no fee instead of the standard fee for this AMM. |
+| `Price`         | String - Number           | Amount               | Yes       | The number of `LPTokens` the auction owner paid to win this slot. ***TODO: normally Amount types would be serialized as an object rather than just a string value. Confirm.*** |
+| `AuthAccounts`  | Array of String - Address | STArray of AccountID | No        | A list of at most 4 additional accounts that are authorized to trade at the discounted fee for this AMM instance. |
 
 ## AMM Flags
 
@@ -52,7 +52,7 @@ There are currently no flags defined for `AMM` objects.
 
 There are two possible formulas for the `AMM` object's ID, depending on the assets this AMM instance is for trading:
 
-- If the AMM trades **two [fungible token](tokens.html)**, the ID is the [SHA-512Half][] of the following, concatenated in order:
+- If the AMM trades **two [fungible tokens](tokens.html)**, the ID is the [SHA-512Half][] of the following, concatenated in order:
     1. The `AMM` space key (`0x0041`)
     0. The address of the first token's issuer.
     0. The currency code of the first token.

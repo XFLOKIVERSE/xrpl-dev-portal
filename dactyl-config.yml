@@ -2175,6 +2175,11 @@ pages:
         targets:
             - ja
 
+    -   md: references/protocol-reference/ledger-data/ledger-object-types/amm.md
+        targets:
+            - en
+            - ja
+
     -   md: references/protocol-reference/ledger-data/ledger-object-types/check.md
         targets:
             - en
@@ -2319,6 +2324,26 @@ pages:
 
     -   md: references/protocol-reference/transactions/transaction-types/accountdelete.ja.md
         targets:
+            - ja
+
+    -   md: references/protocol-reference/transactions/transaction-types/amminstancecreate.md
+        targets:
+            - en
+            - ja
+
+    -   md: references/protocol-reference/transactions/transaction-types/ammdeposit.md
+        targets:
+            - en
+            - ja
+
+    -   md: references/protocol-reference/transactions/transaction-types/ammvote.md
+        targets:
+            - en
+            - ja
+
+    -   md: references/protocol-reference/transactions/transaction-types/ammwithdraw.md
+        targets:
+            - en
             - ja
 
     -   md: references/protocol-reference/transactions/transaction-types/checkcancel.md
