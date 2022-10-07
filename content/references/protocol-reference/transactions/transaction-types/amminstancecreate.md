@@ -19,7 +19,21 @@ If successful, this transaction creates both an [AccountRoot object][] and an [A
 ## Example {{currentpage.name}} JSON
 
 ```json
-TODO
+{
+  "TransactionType": "AMMInstanceCreate",
+  "Account": "rJVUeRqDFNs2xqA7ncVE6ZoAhPUoaJJSQm",
+  "Asset1": {
+    "currency": "TST",
+    "issuer": "rP9jPyP5kyvFRb6ZiRghAGw5u8SGAmU4bd",
+    "value": "25"
+  },
+  "Asset2": "250000000",
+  "TradingFee": 500,
+  "Flags": 0,
+  "Sequence": 2,
+  "Fee": "12",
+  "LastLedgerSequence": 142917
+}
 ```
 
 {% include '_snippets/tx-fields-intro.md' %}
@@ -29,7 +43,7 @@ TODO
 |:-------------|:--------------------|:------------------|:----------|:------------|
 | `Asset1`     | [Currency Amount][] | Amount            | Yes       | The first of the two assets to fund this AMM with. This must have a positive `value`. |
 | `Asset2`     | [Currency Amount][] | Amount            | Yes       | The second of the two assets to fund this AMM with. This must have a positive `value`. |
-| `TradingFee` | Number              | UInt16            | Yes       | The fee to charge for trades against this AMM instance, in units of 1/100,000; a value of 1 is equivalent to 0.001%. The maximum value is 65000, indicating a 65% fee. |
+| `TradingFee` | Number              | UInt16            | Yes       | The fee to charge for trades against this AMM instance, in units of 1/100,000; a value of 1 is equivalent to 0.001%. The maximum value is `65000`, indicating a 65% fee. The minimum value is `0`. |
 
 One or both of `Asset1` and `Asset2` can be [tokens](tokens.html); at most one of them can be [XRP](xrp.html). They cannot both have the same currency code and issuer.
 

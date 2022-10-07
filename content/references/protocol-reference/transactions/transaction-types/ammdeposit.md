@@ -12,7 +12,7 @@ status: not_enabled
 
 {% include '_snippets/amm-disclaimer.md' %}
 
-Deposit funds into an Automated Market-Maker (AMM) instance and receive the AMM's liquidity provider tokens (`LPTokens`) in exchange. You can deposit one or both of the assets that the AMM instance trades.
+Deposit funds into an Automated Market-Maker (AMM) instance and receive the AMM's liquidity provider tokens (_LP Tokens_) in exchange. You can deposit one or both of the assets that the AMM instance trades.
 
 ## Example {{currentpage.name}} JSON
 
@@ -27,24 +27,24 @@ TODO
 |:-----------|:--------------------|:------------------|:----------|:------------|
 | `AMMID`    | String              | Hash256           | Yes | The [ledger object ID](ledger-object-id.html) of the AMM instance to deposit into. |
 | `Asset1In` | [Currency Amount][] | Amount            | No | The amount of one asset to deposit to the AMM. This must match the type of one of the assets (tokens or XRP) that the AMM trades. |
-| `Asset2In` | [Currency Amount][] | Amount            | No | The amount of another asset to add to the AMM. If present, this must match the type of the other asset the AMM trades and cannot be the same type as `Asset1In`. |
-| `EPrice`   | [Currency Amount][] | Amount            | No | The effective price of the `LPTokens` after depositing these funds. Must be omitted if `Asset2In` is provided. ***TODO: need more clarity on how this works*** |
-| `LPTokens` | [Currency Amount][] | Amount            | No | How many of the AMM's `LPTokens` to buy. |
+| `Asset2In` | [Currency Amount][] | Amount            | No | The amount of another asset to add to the AMM. If present, this must match the type of the other asset the AMM trades and cannot be the same asset as `Asset1In`. |
+| `EPrice`   | [Currency Amount][] | Amount            | No | The effective price of the LP Tokens after depositing these funds. Must be omitted if `Asset2In` is provided. ***TODO: need more clarity on how this works*** |
+| `LPTokens` | [Currency Amount][] | Amount            | No | How many of the AMM's LP Tokens to buy. |
 
 
 ### AMMDeposit Modes
 
 This transaction has several modes, depending on which combination of fields are provided. The valid modes are:
 
-- `LPTokens` only
-- `Asset1In` only
-- `Asset1In` and `Asset2In`
-- `Asset1In` and `LPTokens`
-- `Asset1In` and `EPrice`
+| Fields Specified          | Fee? | Meaning |
+|---------------------------|------|---|
+| `LPTokens` only           | None | Deposit both of this AMM's assets, in amounts calculated so that you receive the specified amount of LP Tokens in return. The amounts deposited maintain the relative proportions of the two assets the AMM already holds. |
+| `Asset1In` only           | ***TODO: "Fee in terms of the specified assset"*** | Deposit a specified amount of one of this AMM's assets, and receive an amount of LP Tokens based on ***TODO:???*** |
+| `Asset1In` and `Asset2In` | None | Deposit both of this AMM's assets, up to the specified amounts. The actual amounts deposited must maintain the same balance of assets as the AMM already holds, so the amount of either one debited MAY be less than specified. The amount of LP Tokens you get in return is based on the total value deposited. |
+| `Asset1In` and `LPTokens` | ***TODO: "Fee in terms of the specified assset"*** | Deposit one of this AMM's assets, up to the specified amount, so that you receive the specified amount of LP Tokens in return. |
+| `Asset1In` and `EPrice`   | ***TODO: ???*** | Deposit one of this AMM's assets, up to the specified amount, so that you pay no more than the specified effective price per LP Token. |
 
 Any other combination of these fields is invalid.
-
-***TODO: clarify the intended purpose and semantics of all 5 modes.***
 
 
 ## Error Cases
@@ -59,7 +59,7 @@ In addition to errors that can occur for all transactions, {{currentpage.name}} 
 | `temBAD_AMM_TOKENS`  | ***TODO: clarify "invalid LPTokens"*** |
 | `tecAMM_FAILED_DEPOSIT` | ***TODO: clarify*** |
 | `tecAMM_INVALID_TOKENS` | ***TODO: clarify*** |
-| ***TODO: possibly other codes*** | |
+| | ***TODO: possibly other codes*** |
 
 <!--{# common link defs #}-->
 {% include '_snippets/rippled-api-links.md' %}
