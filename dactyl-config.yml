@@ -2331,6 +2331,11 @@ pages:
             - en
             - ja
 
+    -   md: references/protocol-reference/transactions/transaction-types/ammbid.md
+        targets:
+            - en
+            - ja
+
     -   md: references/protocol-reference/transactions/transaction-types/ammdeposit.md
         targets:
             - en
