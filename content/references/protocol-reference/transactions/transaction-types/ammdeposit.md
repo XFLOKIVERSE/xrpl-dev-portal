@@ -51,14 +51,16 @@ Any other combination of these fields is invalid.
 
 In addition to errors that can occur for all transactions, {{currentpage.name}} transactions can result in the following [transaction result codes](transaction-results.html):
 
-| Error Code           | Description                                  |
-|:---------------------|:---------------------------------------------|
-| `temBAD_AMM_OPTIONS` | The transaction specified an invalid combination of fields. See [AMMDeposit Modes](#ammdeposit-modes). |
-| `tecFROZEN`          | The transaction tried to deposit a [frozen](freezes.html) token. |
-| `tecAMM_BALANCE`     | ***TODO: clarify "reserves or tokens balance is zero"*** |
-| `temBAD_AMM_TOKENS`  | ***TODO: clarify "invalid LPTokens"*** |
-| `tecAMM_FAILED_DEPOSIT` | ***TODO: clarify*** |
-| `tecAMM_INVALID_TOKENS` | ***TODO: clarify*** |
+| Error Code              | Description                                  |
+|:------------------------|:---------------------------------------------|
+| `temBAD_AMM_OPTIONS`    | The transaction specified an invalid combination of fields. See [AMMDeposit Modes](#ammdeposit-modes). |
+| `tecFROZEN`             | The transaction tried to deposit a [frozen](freezes.html) token. |
+| `tecAMM_BALANCE`        | The sender does not have enough of one of the assets to deposit the specified amount. |
+| `temBAD_AMM_TOKENS`     | The transaction specified an invalid `LPTokens` field; for example, the `issuer` is not the AMM's associated AccountRoot address or the `currency` is not the currency code for this AMM's LP Tokens. |
+| `tecAMM_FAILED_DEPOSIT` | The transaction could not deposit the specified amounts. ***TODO: more explanation for why*** |
+| `tecAMM_INVALID_TOKENS` | ***TODO: clarify difference from the temBAD_AMM_TOKENS*** |
+| `tecNO_PERMISSION`      | The transaction specified a token that uses [Deposit Authorization](depositauth.html) or [Authorized Trust Lines](authorized-trust-lines.html) but the sender is not authorized. ***TODO: confirm this applies to both DepositAuth & Authorized Trust Lines*** |
+| `terNO_ACCOUNT`         | The AMM specified in the `AMMID` (or its corresponding AccountRoot object) does not exist. |
 | | ***TODO: possibly other codes*** |
 
 <!--{# common link defs #}-->

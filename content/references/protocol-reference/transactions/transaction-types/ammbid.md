@@ -36,7 +36,7 @@ You cannot specify both `MinSlotPrice` and `MaxSlotPrice`.
 
 ## Slot Price Calculations
 
-If successful, the transaction automatically outbids the previous slot owner and debits the bid price from the sender's LP Tokens. The price to win the auction decreases over time, divided into 20 intervals of 72 minutes each.
+If successful, the transaction automatically outbids the previous slot owner and debits the bid price from the sender's LP Tokens. The price to win the auction decreases over time, divided into 20 intervals of 72 minutes each. If the sender does not have enough LP Tokens to win the bid, or the price of the bid is higher than the transaction's `MaxSlotPrice` value, the transaction fails with a `tecAMM_FAILED_BID` result.
 
 - If the auction slot is currently empty, expired, or in its last interval, the **minimum bid** is **0.001% of the AMM's total LP Tokens balance**.
 
