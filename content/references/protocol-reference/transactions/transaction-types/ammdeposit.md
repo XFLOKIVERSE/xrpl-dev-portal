@@ -38,7 +38,7 @@ Deposit funds into an Automated Market-Maker (AMM) instance and receive the AMM'
 
 | Field      | JSON Type           | [Internal Type][] | Required? | Description |
 |:-----------|:--------------------|:------------------|:----------|:------------|
-| `AMMID`    | String              | Hash256           | Yes | The [ledger object ID](ledger-object-id.html) of the AMM instance to deposit into. |
+| `AMMID`    | String              | Hash256           | Yes | The [ledger object ID](ledger-object-ids.html) of the AMM instance to deposit into. |
 | `Asset1In` | [Currency Amount][] | Amount            | No | The amount of one asset to deposit to the AMM. This must match the type of one of the assets (tokens or XRP) that the AMM trades. |
 | `Asset2In` | [Currency Amount][] | Amount            | No | The amount of another asset to add to the AMM. If present, this must match the type of the other asset the AMM trades and cannot be the same asset as `Asset1In`. |
 | `EPrice`   | [Currency Amount][] | Amount            | No | The effective price of the LP Tokens after depositing these funds. Must be omitted if `Asset2In` is provided. ***TODO: need more clarity on how this works*** |
