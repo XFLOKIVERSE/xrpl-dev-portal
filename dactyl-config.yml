@@ -191,6 +191,8 @@ targets:
             "transaction-basics.html#authorizing-transactions": "transaction-basics.html#トランザクションの識別"
             # Fix links from untranslated AMM pages:
             "transaction-common-fields.html#global-flags": "transaction-common-fields.html#グローバルフラグ"
+            # Fix link from untranslated account_nfts.html
+            "nftoken.html#nftokentaxon": "nftoken.html#分類群"
 
 pages:
 
@@ -764,6 +766,11 @@ pages:
             - en
             - ja
 
+    -   md: concepts/tokens/nftoken-batch-minting.md
+        targets:
+            - en
+            - ja
+            
     -   md: concepts/tokens/freezes.md
         targets:
             - en
@@ -1137,7 +1144,13 @@ pages:
         targets:
             - en
             - ja
+            
     -   md: tutorials/quickstart/authorize-minter.md
+        targets:
+            - en
+            - ja
+            
+    -   md: tutorials/quickstart/batch-minting.md
         targets:
             - en
             - ja

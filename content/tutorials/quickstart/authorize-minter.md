@@ -1,15 +1,15 @@
 ---
 html: authorize-minter.html
 parent: xrpl-quickstart.html
-blurb: Authorize another account to mint tokens on your behalf.
+blurb: Authorize another account to mint NFTokens for you.
 labels:
   - Accounts
   - Quickstart
-  - NFTokens
   - XRP
+  - NFTs, NFTokens
 ---
 
-# Assign an Authorized Minter 
+# Assign an Authorized Minter
 
 You can assign another account permission to mint NFTokens for you.
 
@@ -22,7 +22,7 @@ This example shows how to:
 
 # Usage
 
-You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip) archive to try the sample in your own browser.
+You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip){.github-code-download} archive to try the sample in your own browser.
 
 ## Get Accounts
 
@@ -90,7 +90,7 @@ When you examine the results field, you'll find that the Issuer account is credi
 
 # Code Walkthrough
 
-You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip) archive to try each of the samples in your own browser.
+You can download the [Quickstart Samples](https://github.com/XRPLF/xrpl-dev-portal/tree/master/content/_code-samples/quickstart/js/quickstart.zip){.github-code-download} archive to try each of the samples in your own browser.
 
 ## Set Minter
 
@@ -758,5 +758,5 @@ Update the form with fields and buttons to support the new functions.
 
 | Previous      | Next                                                             |
 | :---          |                                                             ---: |
-| [← Broker a NFToken Sale >](broker-sale.html)  |  |
+| [← Broker a NFToken Sale >](broker-sale.html)  | [Batch Mint NFTokens → >](batch-minting.html) |
 
