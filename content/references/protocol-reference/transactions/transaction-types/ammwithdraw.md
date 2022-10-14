@@ -17,19 +17,32 @@ Withdraw funds an Automated Market-Maker (AMM) instance by returning the AMM's l
 ## Example {{currentpage.name}} JSON
 
 ```json
-TODO
+{
+  "TransactionType": "AMMWithdraw",
+  "AMMID": "4B82E4CB90FBE26EA172A498F7A7B03A2A7C285149A9B18731370F2644B96F7A",
+  "Account": "rJVUeRqDFNs2xqA7ncVE6ZoAhPUoaJJSQm",
+  "Asset1Out": {
+    "currency": "TST",
+    "issuer": "rP9jPyP5kyvFRb6ZiRghAGw5u8SGAmU4bd",
+    "value": "5"
+  },
+  "Asset2Out": "50000000",
+  "Flags": 0,
+  "Sequence": 3,
+  "Fee": "12",
+  "LastLedgerSequence": 369509
+}
 ```
 
 {% include '_snippets/tx-fields-intro.md' %}
-<!--{# fix md highlighting_ #}-->
 
-| Field      | JSON Type           | [Internal Type][] | Required? | Description |
-|:-----------|:--------------------|:------------------|:----------|:------------|
-| `AMMID`    | String              | Hash256           | Yes | The [ledger object ID](ledger-object-id.html) of the AMM instance to withdraw from. |
-| `Asset1Out` | [Currency Amount][] | Amount            | No | The amount of one asset to withdraw from the AMM. This must match the type of one of the assets (tokens or XRP) that the AMM trades. |
-| `Asset2Out` | [Currency Amount][] | Amount            | No | The amount of another asset to withdraw from the AMM. If present, this must match the type of the other asset the AMM trades and cannot be the same type as `Asset1Out`. |
-| `EPrice`   | [Currency Amount][] | Amount            | No | The effective price of the `LPTokens` after withdrawing these funds. ***TODO: need more clarity on how this works*** |
-| `LPTokens` | [Currency Amount][] | Amount            | No | How many of the AMM's `LPTokens` to redeem. |
+| Field       | JSON Type           | [Internal Type][] | Required? | Description |
+|:------------|:--------------------|:------------------|:----------|:------------|
+| `AMMID`     | String              | Hash256           | Yes       | The AMMID of the AMM instance to withdraw from. **Caution:** This is not the ID of the AMM ledger object! |
+| `Asset1Out` | [Currency Amount][] | Amount            | No        | The amount of one asset to withdraw from the AMM. This must match the type of one of the assets (tokens or XRP) that the AMM trades. |
+| `Asset2Out` | [Currency Amount][] | Amount            | No        | The amount of another asset to withdraw from the AMM. If present, this must match the type of the other asset the AMM trades and cannot be the same type as `Asset1Out`. |
+| `EPrice`    | [Currency Amount][] | Amount            | No        | The effective price of the `LPTokens` after withdrawing these funds. ***TODO: need more clarity on how this works*** |
+| `LPTokens`  | [Currency Amount][] | Amount            | No        | How many of the AMM's `LPTokens` to redeem. |
 
 
 ### AMMDeposit Modes

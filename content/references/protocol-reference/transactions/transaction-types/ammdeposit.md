@@ -17,11 +17,24 @@ Deposit funds into an Automated Market-Maker (AMM) instance and receive the AMM'
 ## Example {{currentpage.name}} JSON
 
 ```json
-TODO
+{
+  "TransactionType": "AMMDeposit",
+  "AMMID": "4B82E4CB90FBE26EA172A498F7A7B03A2A7C285149A9B18731370F2644B96F7A",
+  "Account": "rJVUeRqDFNs2xqA7ncVE6ZoAhPUoaJJSQm",
+  "Asset1In": {
+    "currency": "TST",
+    "issuer": "rP9jPyP5kyvFRb6ZiRghAGw5u8SGAmU4bd",
+    "value": "2.5"
+  },
+  "Asset2In": "30000000",
+  "Flags": 0,
+  "Sequence": 4,
+  "Fee": "12",
+  "LastLedgerSequence": 369823
+}
 ```
 
 {% include '_snippets/tx-fields-intro.md' %}
-<!--{# fix md highlighting_ #}-->
 
 | Field      | JSON Type           | [Internal Type][] | Required? | Description |
 |:-----------|:--------------------|:------------------|:----------|:------------|

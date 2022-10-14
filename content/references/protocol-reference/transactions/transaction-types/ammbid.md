@@ -19,20 +19,55 @@ The price of the auction slot is always denominated in that AMM's LP Tokens; the
 ## Example {{currentpage.name}} JSON
 
 ```json
-TODO
+{
+  "TransactionType": "AMMBid",
+  "AMMID": "4B82E4CB90FBE26EA172A498F7A7B03A2A7C285149A9B18731370F2644B96F7A",
+  "Account": "rJVUeRqDFNs2xqA7ncVE6ZoAhPUoaJJSQm",
+  "MaxSlotPrice": {
+    "currency": "D717347ECCF3E2B373546F02AA016D7ABA13C8F7",
+    "issuer": "rLcJnZS6M9DyZ23g3GPvtyuYgT5QFwWXaN",
+    "value": "100"
+  },
+  "AuthAccounts": [
+    {
+      "AuthAccount": {
+        "Account": "rMKXGCbJ5d8LbrqthdG46q3f969MVK2Qeg"
+      }
+    },
+    {
+      "AuthAccount": {
+        "Account": "rBepJuTLFJt3WmtLXYAxSjtBWAeQxVbncv"
+      }
+    }
+  ],
+  "Flags": 0,
+  "Sequence": 6,
+  "Fee": "12",
+  "LastLedgerSequence": 402207
+}
+
 ```
 
 {% include '_snippets/tx-fields-intro.md' %}
-<!--{# fix md highlighting_ #}-->
 
 | Field          | JSON Type           | [Internal Type][]  | Required? | Description |
 |:---------------|:--------------------|:-------------------|:----------|:------------|
 | `AMMID`        | String              | Hash256            | Yes       | The [ledger object ID](ledger-object-id.html) of the AMM instance this bid is for. |
 | `MinSlotPrice` | [Currency Amount][] | Amount             | No        | Pay at least this amount for the slot. Setting this value higher makes it harder for others to outbid you. If omitted, pay the minimum necessary to win the bid. |
 | `MaxSlotPrice` | [Currency Amount][] | Amount             | No        | Pay at most this amount for the slot. If the cost to win the bid is higher than this amount, the transaction fails. If omitted, pay as much as necessary to win the bid. |
-| `AuthAccounts` | Array               | Array of AccountID | No        | A list of up to 4 additional accounts that you allow to trade at the discounted fee. This cannot include the address of the transaction sender. |
+| `AuthAccounts` | Array               | STArray            | No        | A list of up to 4 additional accounts that you allow to trade at the discounted fee. This cannot include the address of the transaction sender. Each of these objects should be an [AuthAccount object](#authaccount-objects). |
 
 You cannot specify both `MinSlotPrice` and `MaxSlotPrice`.
+
+### AuthAccount Objects
+
+Each member of the `AuthAccounts` array must be an object with the following field:
+
+| Field          | JSON Type | [Internal Type][] | Required? | Description |
+|:---------------|:----------|:------------------|:----------|:------------|
+| `Account`      | String    | AccountID         | Yes       | The address of the account to authorize. |
+
+Like other "inner objects" that can appear in arrays, the JSON representation of each of these objects is wrapped in an object whose only key is the object type, `AuthAccount`.
 
 ## Slot Price Calculations
 
@@ -82,7 +117,7 @@ In addition to errors that can occur for all transactions, {{currentpage.name}} 
 | `tecAMM_FAILED_BID`     | This transaction could not win the auction, either because the sender does not hold enough LP Tokens to pay the necessary bid or because the price to win the auction was higher than the transaction's specified `MaxSlotPrice` value. |
 | `tecAMM_INVALID_TOKENS` | The sender of this transaction does not hold enough LP Tokens to meet the slot price. |
 | `temBAD_AMM_TOKENS`     | The specified `MinSlotPrice` or `MaxSlotPrice` were not specified as the correct LP Tokens for this AMM. |
-| `temBAD_AMM_OPTIONS`    | The transaction specified invalid options, such as a list of `AuthAccounts` that is too long. |
+| `temBAD_AMM_OPTIONS`    | The transaction specified invalid options, such as a list of `AuthAccounts` that is too long, or specifying both `MinSlotPrice` and `MaxSlotPrice`. |
 | `temDISABLED`           | The AMM feature :not_enabled: is not enabled on this network. |
 | `terNO_ACCOUNT`         | Either the specified `AMM`'s associated `AccountRoot` object, or one of the other accounts specified in this request, do not exist. |
 | | ***TODO: any other errors specific to this transaction type?*** |

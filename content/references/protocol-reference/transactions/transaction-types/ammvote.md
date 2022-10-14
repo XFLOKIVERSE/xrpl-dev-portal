@@ -12,17 +12,24 @@ status: not_enabled
 
 {% include '_snippets/amm-disclaimer.md' %}
 
-Vote on the trading fee for an Automated Market Maker instance.
-
+Vote on the trading fee for an Automated Market Maker instance. Up to 8 accounts can vote in proportion to the amount of the AMM's LP Tokens they hold. Each new vote re-calculates the AMM's trading fee based on a weighted average of the votes.
 
 ## Example {{currentpage.name}} JSON
 
 ```json
-TODO
+{
+  "TransactionType": "AMMVote",
+  "AMMID": "4B82E4CB90FBE26EA172A498F7A7B03A2A7C285149A9B18731370F2644B96F7A",
+  "Account": "rJVUeRqDFNs2xqA7ncVE6ZoAhPUoaJJSQm",
+  "FeeVal": 600,
+  "Flags": 0,
+  "Sequence": 5,
+  "Fee": "12",
+  "LastLedgerSequence": 369957
+}
 ```
 
 {% include '_snippets/tx-fields-intro.md' %}
-<!--{# fix md highlighting_ #}-->
 
 | Field      | JSON Type | [Internal Type][] | Required? | Description |
 |:-----------|:----------|:------------------|:----------|:------------|
@@ -33,9 +40,12 @@ TODO
 
 In addition to errors that can occur for all transactions, {{currentpage.name}} transactions can result in the following [transaction result codes](transaction-results.html):
 
-| Error Code           | Description                                  |
-|:---------------------|:---------------------------------------------|
-| ***TODO: errors*** | | 
+| Error Code              | Description                                  |
+|:------------------------|:---------------------------------------------|
+| `tecAMM_INVALID_TOKENS` | The sender cannot vote because they do not hold any of this AMM's LP Tokens. |
+| `tecAMM_FAILED_VOTE`    | There are already 8 votes from accounts that hold more LP Tokens than the sender of this transaction. |
+| `terNO_ACCOUNT`         | The AMM specified in the `AMMID` (or its corresponding AccountRoot object) does not exist. |
+| `temBAD_FEE`            | The `FeeVal` from this transaction is not valid. |
 
 
 <!--{# common link defs #}-->
