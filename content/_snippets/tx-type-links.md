@@ -3,7 +3,7 @@
     "AccountSet",
     "AMMBid",
     "AMMDeposit",
-    "AMMInstanceCreate",
+    "AMMCreate",
     "AMMVote",
     "AMMWithdraw",
     "CheckCancel",

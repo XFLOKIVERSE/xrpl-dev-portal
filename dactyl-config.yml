@@ -2341,7 +2341,7 @@ pages:
         targets:
             - ja
 
-    -   md: references/protocol-reference/transactions/transaction-types/amminstancecreate.md
+    -   md: references/protocol-reference/transactions/transaction-types/ammcreate.md
         targets:
             - en
             - ja

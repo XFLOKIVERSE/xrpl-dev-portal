@@ -17,7 +17,7 @@ For the most part, transactions with `tec` codes take no action other than to de
 |:---------------------------|:------|:----------------------------------------|
 | `tecAMM_BALANCE`           | 163   | 
 | `tecAMM_DIRECT_PAYMENT`    | 169   | The transaction tried to send money directly to an AccountRoot object that is part of an Automated Market Maker (AMM) :not_enabled:. AMM AccountRoot entries cannot send or receive money directly except through [AMMWithdraw][] and [AMMDeposit][] transactions. |
-| `tecAMM_EXISTS`            | 167   | The [AMMInstanceCreate transaction][] :not_enabled: tried to create an Automated Market Maker (AMM) instance that already exists. There can only be at most one AMM per unique currency pair. |
+| `tecAMM_EXISTS`            | 167   | The [AMMCreate transaction][] :not_enabled: tried to create an Automated Market Maker (AMM) instance that already exists. There can only be at most one AMM per unique currency pair. |
 | `tecAMM_FAILED_DEPOSIT`    | 164   | The [AMMDeposit transaction][] :not_enabled: failed, probably because the sender does not have enough of the specified assets. |
 | `tecAMM_FAILED_WITHDRAW`   | 165   | :not_enabled: ***TODO*** |
 | `tecAMM_FAILED_BID`        | 168   | The [AMMBid transaction][] :not_enabled: failed, probably because the price to win the auction was higher than the specified maximum value or the sender's current balance. |
@@ -67,7 +67,7 @@ For the most part, transactions with `tec` codes take no action other than to de
 | `tecTOO_SOON`              | 152   | The [AccountDelete transaction][] failed because the account to be deleted had a `Sequence` number that is too high. The current ledger index must be at least 256 higher than the account's sequence number. |
 | `tecUNFUNDED`              | 129   | The transaction failed because the account does not hold enough XRP to pay the amount in the transaction _and_ satisfy the additional [reserve](reserves.html) necessary to execute this transaction. |
 | `tecUNFUNDED_ADD`          | 102   | **DEPRECATED.**                         |
-| `tecUNFUNDED_AMM`          | 162   | The [AMMInstanceCreate transaction][] :not_enabled: failed because the sender does not have enough of the specified assets to fund it. |
+| `tecUNFUNDED_AMM`          | 162   | The [AMMCreate transaction][] :not_enabled: failed because the sender does not have enough of the specified assets to fund it. |
 | `tecUNFUNDED_PAYMENT`      | 104   | The transaction failed because the sending account is trying to send more XRP than it holds, not counting the [reserve](reserves.html). |
 | `tecUNFUNDED_OFFER`        | 103   | The [OfferCreate transaction][] failed because the account creating the offer does not have any of the `TakerGets` currency. |
 

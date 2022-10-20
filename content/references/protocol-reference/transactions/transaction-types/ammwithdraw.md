@@ -36,23 +36,23 @@ Withdraw funds an Automated Market-Maker (AMM) instance by returning the AMM's l
 
 {% include '_snippets/tx-fields-intro.md' %}
 
-| Field       | JSON Type           | [Internal Type][] | Required? | Description |
-|:------------|:--------------------|:------------------|:----------|:------------|
-| `AMMID`     | String              | Hash256           | Yes       | The AMMID of the AMM instance to withdraw from. **Caution:** This is not the ID of the AMM ledger object! |
-| `Asset1Out` | [Currency Amount][] | Amount            | No        | The amount of one asset to withdraw from the AMM. This must match the type of one of the assets (tokens or XRP) that the AMM trades. |
-| `Asset2Out` | [Currency Amount][] | Amount            | No        | The amount of another asset to withdraw from the AMM. If present, this must match the type of the other asset the AMM trades and cannot be the same type as `Asset1Out`. |
-| `EPrice`    | [Currency Amount][] | Amount            | No        | The effective price of the `LPTokens` after withdrawing these funds. ***TODO: need more clarity on how this works*** |
-| `LPTokens`  | [Currency Amount][] | Amount            | No        | How many of the AMM's `LPTokens` to redeem. |
+| Field        | JSON Type           | [Internal Type][] | Required? | Description |
+|:-------------|:--------------------|:------------------|:----------|:------------|
+| `AMMID`      | String              | Hash256           | Yes       | The AMMID of the AMM instance to withdraw from. **Caution:** This is not the ID of the AMM ledger object! |
+| `Asset1Out`  | [Currency Amount][] | Amount            | No        | The amount of one asset to withdraw from the AMM. This must match the type of one of the assets (tokens or XRP) that the AMM trades. |
+| `Asset2Out`  | [Currency Amount][] | Amount            | No        | The amount of another asset to withdraw from the AMM. If present, this must match the type of the other asset the AMM trades and cannot be the same type as `Asset1Out`. |
+| `EPrice`     | [Currency Amount][] | Amount            | No        | The effective price of the LP Tokens after withdrawing these funds. ***TODO: need more clarity on how this works*** |
+| `LPTokensIn` | [Currency Amount][] | Amount            | No        | How many of the AMM's LP Tokens to redeem. |
 
 
 ### AMMDeposit Modes
 
 This transaction has several modes, depending on which combination of fields are provided. The valid modes are:
 
-- `LPTokens` only, or enable the `tfAMMWithdrawAll` flag
+- `LPTokensIn` only, or enable the `tfAMMWithdrawAll` flag
 - `Asset1Out` only
 - `Asset1Out` and `Asset2Out`
-- `Asset1Out` and `LPTokens`; or `Asset1Out` and enable the `tfAMMWithdrawAll` flag
+- `Asset1Out` and `LPTokensIn`; or `Asset1Out` and enable the `tfAMMWithdrawAll` flag
 - `Asset1Out` and `EPrice`
 
 Any other combination of these fields is invalid.

@@ -21,7 +21,7 @@ Vote on the trading fee for an Automated Market Maker instance. Up to 8 accounts
   "TransactionType": "AMMVote",
   "AMMID": "4B82E4CB90FBE26EA172A498F7A7B03A2A7C285149A9B18731370F2644B96F7A",
   "Account": "rJVUeRqDFNs2xqA7ncVE6ZoAhPUoaJJSQm",
-  "FeeVal": 600,
+  "TradingFee": 600,
   "Flags": 0,
   "Sequence": 5,
   "Fee": "12",
@@ -31,10 +31,10 @@ Vote on the trading fee for an Automated Market Maker instance. Up to 8 accounts
 
 {% include '_snippets/tx-fields-intro.md' %}
 
-| Field      | JSON Type | [Internal Type][] | Required? | Description |
-|:-----------|:----------|:------------------|:----------|:------------|
-| `AMMID`    | String    | Hash256           | Yes       | The [ledger object ID](ledger-object-ids.html) of the AMM instance to withdraw from. |
-| `FeeVal`   | Number    | UInt16            | Yes       | The proposed fee to vote for, in units of 1/100,000; a value of 1 is equivalent to 0.001%. The maximum value is 65000, indicating a 65% fee. |
+| Field        | JSON Type | [Internal Type][] | Required? | Description |
+|:-------------|:----------|:------------------|:----------|:------------|
+| `AMMID`      | String    | Hash256           | Yes       | The [ledger object ID](ledger-object-ids.html) of the AMM instance to withdraw from. |
+| `TradingFee` | Number    | UInt16            | Yes       | The proposed fee to vote for, in units of 1/100,000; a value of 1 is equivalent to 0.001%. The maximum value is 65000, indicating a 65% fee. |
 
 ## Error Cases
 

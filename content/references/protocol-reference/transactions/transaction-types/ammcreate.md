@@ -1,12 +1,12 @@
 ---
-html: amminstancecreate.html
+html: ammcreate.html
 parent: transaction-types.html
 blurb: Create a new AMM instance for trading a given currency pair.
 labels:
   - AMM
 status: not_enabled
 ---
-# AMMInstanceCreate
+# AMMCreate
 [[Source]](https://github.com/gregtatcam/rippled/blob/amm-core-functionality/src/ripple/app/tx/impl/AMMCreate.cpp "Source")
 <!-- TODO: Update source link to merged version when available -->
 
@@ -20,7 +20,7 @@ If successful, this transaction creates both an [AccountRoot object][] and an [A
 
 ```json
 {
-  "TransactionType": "AMMInstanceCreate",
+  "TransactionType": "AMMCreate",
   "Account": "rJVUeRqDFNs2xqA7ncVE6ZoAhPUoaJJSQm",
   "Asset1": {
     "currency": "TST",
