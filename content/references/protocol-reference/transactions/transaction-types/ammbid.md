@@ -108,6 +108,8 @@ R = B × (1 - t)
 - `B` is the price of the previous bid to be refunded, in LP Tokens.
 - `t` is the fraction of time elapsed in the current 24-hour slot, rounded down to a multiple of 0.05.
 
+As a special case, during the final (20th) interval of the auction slot, the refunded amount is zero.
+
 
 ## AMM Cases previous holder
 In addition to errors that can occur for all transactions, {{currentpage.name}} transactions can result in the following [transaction result codes](transaction-results.html):
@@ -120,7 +122,6 @@ In addition to errors that can occur for all transactions, {{currentpage.name}} 
 | `temBAD_AMM_OPTIONS`    | The transaction specified invalid options, such as a list of `AuthAccounts` that is too long, or specifying both `MinSlotPrice` and `MaxSlotPrice`. |
 | `temDISABLED`           | The AMM feature :not_enabled: is not enabled on this network. |
 | `terNO_ACCOUNT`         | Either the specified `AMM`'s associated `AccountRoot` object, or one of the other accounts specified in this request, do not exist. |
-| | ***TODO: any other errors specific to this transaction type?*** |
 
 
 <!--{# common link defs #}-->
