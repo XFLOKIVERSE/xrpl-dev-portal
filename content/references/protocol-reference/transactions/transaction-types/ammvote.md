@@ -33,7 +33,7 @@ Vote on the trading fee for an Automated Market Maker instance. Up to 8 accounts
 
 | Field        | JSON Type | [Internal Type][] | Required? | Description |
 |:-------------|:----------|:------------------|:----------|:------------|
-| `AMMID`      | String    | Hash256           | Yes       | The [ledger object ID](ledger-object-ids.html) of the AMM instance to withdraw from. |
+| `AMMID`      | String    | Hash256           | Yes       | The AMMID of the AMM instance this vote applies to. **Caution:** This is not the ID of the AMM ledger object! |
 | `TradingFee` | Number    | UInt16            | Yes       | The proposed fee to vote for, in units of 1/100,000; a value of 1 is equivalent to 0.001%. The maximum value is 65000, indicating a 65% fee. |
 
 ## Error Cases

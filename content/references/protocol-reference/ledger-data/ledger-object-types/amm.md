@@ -7,6 +7,8 @@ labels:
 status: not_enabled
 ---
 # AMM
+[[Source]](https://github.com/gregtatcam/rippled/blob/c1e4bfb08bcc9f187d794a71d653003a6148dc68/src/ripple/protocol/impl/LedgerFormats.cpp#L265-L275 "Source")
+<!-- TODO: Update source link to merged version when available -->
 
 {% include '_snippets/amm-disclaimer.md' %}
 
@@ -75,14 +77,14 @@ The `AMM` object type describes a single Automated Market Maker (AMM) instance.
 
 The `AMM` object has the following fields:
 
-| Field            | JSON Type           | [Internal Type][] | Description  |
+| Field            | JSON Type           | [Internal Type][] | Required? | Description  |
 |:-----------------|:--------------------|:------------------|:-------------|
-| `AMMToken`       | Object              | STObject          | Defines the two assets this AMM trades, as an [AMMToken Object](#ammtoken-object). |
-| `AccountRootID`  | String              | AccountID         | The address of the special account that holds this AMM's assets. |
-| `AuctionSlot`    | Object              | STObject          | Details of the current owner of the auction slot, as an [Auction Slot object](#auction-slot-object). |
-| `LPTokenBalance` | [Currency Amount][] | Amount            | The total outstanding balance of liquidity provider tokens from this AMM instance. The holders of these tokens can vote on the AMM's trading fee in proportion to their holdings, or redeem the tokens for a share of the AMM's assets. |
-| `TradingFee`     | Number              | UInt16            | The percentage fee to be charged for trades against this AMM instance, in units of 1/10,000. The maximum value is 65000, for a 65% fee. |
-| `VoteSlots`      | Array               | STArray           | A list of vote objects, representing votes on the pool's trading fee. |
+| `AMMToken`       | Object              | STObject          | Yes       | Defines the two assets this AMM trades, as an [AMMToken Object](#ammtoken-object). |
+| `AccountRootID`  | String              | AccountID         | Yes       | The address of the special account that holds this AMM's assets. |
+| `AuctionSlot`    | Object              | STObject          | No        | Details of the current owner of the auction slot, as an [Auction Slot object](#auction-slot-object). |
+| `LPTokenBalance` | [Currency Amount][] | Amount            | Yes       | The total outstanding balance of liquidity provider tokens from this AMM instance. The holders of these tokens can vote on the AMM's trading fee in proportion to their holdings, or redeem the tokens for a share of the AMM's assets. |
+| `TradingFee`     | Number              | UInt16            | Yes       | The percentage fee to be charged for trades against this AMM instance, in units of 1/10,000. The maximum value is 65000, for a 65% fee. |
+| `VoteSlots`      | Array               | STArray           | No        | A list of vote objects, representing votes on the pool's trading fee. |
 
 ### AMMToken Object
 
@@ -99,6 +101,8 @@ Both `Token1` and `Token2` objects have the following sub-fields:
 |:-----------------|:--------------------|:------------------|:-------------|
 | `TokenCurrency` | String | Currency Code | The currency code of this asset. As a special case, all 0's refers to XRP. In JSON, this is always hexadecimal even when it uses the "standard currency code" format. |
 | `TokenIssuer` | String | AccountID | The issuer for this asset. As a special case, all 0's refers to XRP. In JSON, this is always hexadecimal, not base58. |
+
+The two assets cannot be the exact same; they _can_ have the same currency code or the same issuer but not both. One or both of the assets _can_ be the LP Tokens from another AMM, but they cannot match the currency and issuer of _this_ AMM's LP Tokens.
 
 ### Auction Slot Object
 

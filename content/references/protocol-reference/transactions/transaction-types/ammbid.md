@@ -52,7 +52,7 @@ The price of the auction slot is always denominated in that AMM's LP Tokens; the
 
 | Field          | JSON Type           | [Internal Type][]  | Required? | Description |
 |:---------------|:--------------------|:-------------------|:----------|:------------|
-| `AMMID`        | String              | Hash256            | Yes       | The [ledger object ID](ledger-object-ids.html) of the AMM instance this bid is for. |
+| `AMMID`        | String              | Hash256            | Yes       | The AMMID of the AMM instance this bid is for. **Caution:** This is not the ID of the AMM ledger object! |
 | `MinSlotPrice` | [Currency Amount][] | Amount             | No        | Pay at least this amount for the slot. Setting this value higher makes it harder for others to outbid you. If omitted, pay the minimum necessary to win the bid. |
 | `MaxSlotPrice` | [Currency Amount][] | Amount             | No        | Pay at most this amount for the slot. If the cost to win the bid is higher than this amount, the transaction fails. If omitted, pay as much as necessary to win the bid. |
 | `AuthAccounts` | Array               | STArray            | No        | A list of up to 4 additional accounts that you allow to trade at the discounted fee. This cannot include the address of the transaction sender. Each of these objects should be an [AuthAccount object](#authaccount-objects). |

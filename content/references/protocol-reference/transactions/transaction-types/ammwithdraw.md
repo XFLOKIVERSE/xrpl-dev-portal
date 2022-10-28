@@ -39,9 +39,9 @@ Withdraw funds an Automated Market-Maker (AMM) instance by returning the AMM's l
 | Field        | JSON Type           | [Internal Type][] | Required? | Description |
 |:-------------|:--------------------|:------------------|:----------|:------------|
 | `AMMID`      | String              | Hash256           | Yes       | The AMMID of the AMM instance to withdraw from. **Caution:** This is not the ID of the AMM ledger object! |
-| `Asset1Out`  | [Currency Amount][] | Amount            | No        | The amount of one asset to withdraw from the AMM. This must match the type of one of the assets (tokens or XRP) that the AMM trades. |
-| `Asset2Out`  | [Currency Amount][] | Amount            | No        | The amount of another asset to withdraw from the AMM. If present, this must match the type of the other asset the AMM trades and cannot be the same type as `Asset1Out`. |
-| `EPrice`     | [Currency Amount][] | Amount            | No        | The effective price of the LP Tokens after withdrawing these funds. ***TODO: need more clarity on how this works*** |
+| `Asset1Out`  | [Currency Amount][] | Amount            | No        | The amount of one asset to withdraw from the AMM. This must match the type of one of the assets (tokens or XRP) that the AMM links. |
+| `Asset2Out`  | [Currency Amount][] | Amount            | No        | The amount of another asset to withdraw from the AMM. If present, this must match the type of the other asset the AMM links and cannot be the same type as `Asset1Out`. |
+| `EPrice`     | [Currency Amount][] | Amount            | No        | Limit the amount of assets to withdraw so that you don't pay more than this price per LP Token. ***TODO: need more clarity on how this works: is this specified in Asset1 or LP Tokens?*** |
 | `LPTokensIn` | [Currency Amount][] | Amount            | No        | How many of the AMM's LP Tokens to redeem. |
 
 

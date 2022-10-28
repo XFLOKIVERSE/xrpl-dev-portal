@@ -1,7 +1,7 @@
 ---
 html: ammcreate.html
 parent: transaction-types.html
-blurb: Create a new AMM instance for trading a given currency pair.
+blurb: Create a new AMM instance for trading a given pair of assets.
 labels:
   - AMM
 status: not_enabled
@@ -12,9 +12,11 @@ status: not_enabled
 
 {% include '_snippets/amm-disclaimer.md' %}
 
-Create a new Automated Market-Maker (AMM) instance for trading a given currency pair.
+Create a new Automated Market-Maker (AMM) instance for trading a given pair of assets ([fungible tokens](tokens.html) or [XRP](xrp.html)).
 
-If successful, this transaction creates both an [AccountRoot object][] and an [AMM object][] which, together, represent the AMM; it also transfers ownership of the starting balance of both assets from the sender to the created `AccountRoot`, and issues an initial balance of liquidity provider tokens (`LPTokens`) from the AMM account to this transaction's sender.
+If successful, this transaction creates both an [AMM object][] and a [special AccountRoot object](accountroot.html#special-amm-accountroot-objects) which, together, represent the AMM; it also transfers ownership of the starting balance of both assets from the sender to the created `AccountRoot`, and issues an initial balance of liquidity provider tokens (LP Tokens) from the AMM account to this transaction's sender.
+
+**Caution:** When you create the AMM, you should fund it with (approximately) equal-value amounts of each asset. Otherwise, other users can profit at your expense by trading with this AMM ([performing arbitrage](https://www.machow.ski/posts/an_introduction_to_automated_market_makers/#price-arbitrage)). The currency risk that liquidity providers take on increases with the volatility (potential for imbalance) of the asset pair. The higher the trading fee, the more it offsets this risk, so it's best to set the trading fee based on the volatility of the asset pair.
 
 ## Example {{currentpage.name}} JSON
 
@@ -45,7 +47,7 @@ If successful, this transaction creates both an [AccountRoot object][] and an [A
 | `Asset2`     | [Currency Amount][] | Amount            | Yes       | The second of the two assets to fund this AMM with. This must have a positive `value`. |
 | `TradingFee` | Number              | UInt16            | Yes       | The fee to charge for trades against this AMM instance, in units of 1/100,000; a value of 1 is equivalent to 0.001%. The maximum value is `65000`, indicating a 65% fee. The minimum value is `0`. |
 
-One or both of `Asset1` and `Asset2` can be [tokens](tokens.html); at most one of them can be [XRP](xrp.html). They cannot both have the same currency code and issuer.
+One or both of `Asset1` and `Asset2` can be [tokens](tokens.html); at most one of them can be [XRP](xrp.html). They cannot both have the same currency code and issuer. An AMM's LP tokens _can_ be used as one of the assets for another AMM.
 
 ## Error Cases
 
@@ -63,7 +65,6 @@ In addition to errors that can occur for all transactions, {{currentpage.name}} 
 | `tecFROZEN`         | At least one of `Asset1` or `Asset2` is currently [frozen](freezes.html). |
 | `tecUNFUNDED_AMM`   | The sender does not hold enough money to fund the AMM with the amounts specified in `Asset1` and `Asset2`. |
 | `tecAMM_EXISTS`     | There is already another AMM trading this currency pair. |
-| ***TODO: possibly other codes*** | |
 
 <!--{# common link defs #}-->
 {% include '_snippets/rippled-api-links.md' %}
