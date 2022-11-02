@@ -33,8 +33,11 @@ An example of the request format:
 
 ```json
 {
-    "method": "nft_sell_offers",
-    "tokenid": "00090000D0B007439B080E9B05BF62403911301A7B1F0CFAA048C0A200000007"
+  "method": "nft_sell_offers",
+  "params": [{
+    "nft_id": "00090000D0B007439B080E9B05BF62403911301A7B1F0CFAA048C0A200000007",
+    "ledger_index": "validated"
+  }]
 }
 ```
 
